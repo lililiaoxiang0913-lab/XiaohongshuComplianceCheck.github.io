@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
+<!-- PWA Meta -->
+<meta name="theme-color" content="#FF2442">
+<meta name="application-name" content="合规检测">
+<meta name="description" content="基于2025-2026最新小红书平台规范的免费合规检测工具">
+
+<!-- iOS PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="合规检测">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMCIgZmlsbD0iI0ZGMjQ0MiIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMzQwIiBmb250LWZhbWlseT0iLWFwcGxlLXN5c3RlbSxQaW5nRmFuZyBTQyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuWwjzwvdGV4dD4KPC9zdmc+">
+<link rel="apple-touch-startup-image" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMCIgZmlsbD0iI0ZGMjQ0MiIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMzQwIiBmb250LWZhbWlseT0iLWFwcGxlLXN5c3RlbSxQaW5nRmFuZyBTQyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuWwjzwvdGV4dD4KPC9zdmc+">
+
+<!-- Android PWA manifest -->
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi5bCP57qi5Lmm5ZCI6KeE5qOA5rWLIiwic2hvcnRfbmFtZSI6IuWQiOinhOajgOa1iyIsImRlc2NyaXB0aW9uIjoi5Z+65LqOMjAyNS0yMDI25pyA5paw5bCP57qi5Lmm5bmz5Y+w6KeE6IyD55qE5ZCI6KeE5qOA5rWL5bel5YW3Iiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNGRjI0NDIiLCJ0aGVtZV9jb2xvciI6IiNGRjI0NDIiLCJvcmllbnRhdGlvbiI6InBvcnRyYWl0IiwibGFuZyI6InpoLUNOIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTVRJZ05URXlJajRLSUNBOGNtVmpkQ0IzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdjbmc5SWpFeE1DSWdabWxzYkQwaUkwWkdNalEwTWlJdlBnb2dJRHgwWlhoMElIZzlJakkxTmlJZ2VUMGlNelF3SWlCbWIyNTBMV1poYldsc2VUMGlMV0Z3Y0d4bExYTjVjM1JsYlN4UWFXNW5SbUZ1WnlCVFF5eHpZVzV6TFhObGNtbG1JaUJtYjI1MExYTnBlbVU5SWpJNE1DSWdabTl1ZEMxM1pXbG5hSFE5SWprd01DSWdabWxzYkQwaWQyaHBkR1VpSUhSbGVIUXRZVzVqYUc5eVBTSnRhV1JrYkdVaVB1V3dqend2ZEdWNGRENEtQQzl6ZG1jKyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIiwicHVycG9zZSI6ImFueSBtYXNrYWJsZSJ9LHsic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhacFpYZENiM2c5SWpBZ01DQTFNVElnTlRFeUlqNEtJQ0E4Y21WamRDQjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2NuZzlJakV4TUNJZ1ptbHNiRDBpSTBaR01qUTBNaUl2UGdvZ0lEeDBaWGgwSUhnOUlqSTFOaUlnZVQwaU16UXdJaUJtYjI1MExXWmhiV2xzZVQwaUxXRndjR3hsTFhONWMzUmxiU3hRYVc1blJtRnVaeUJUUXl4ellXNXpMWE5sY21sbUlpQm1iMjUwTFhOcGVtVTlJakk0TUNJZ1ptOXVkQzEzWldsbmFIUTlJamt3TUNJZ1ptbHNiRDBpZDJocGRHVWlJSFJsZUhRdFlXNWphRzl5UFNKdGFXUmtiR1VpUHVXd2p6d3ZkR1Y0ZEQ0S1BDOXpkbWMrIiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJwdXJwb3NlIjoiYW55IG1hc2thYmxlIn1dLCJjYXRlZ29yaWVzIjpbInV0aWxpdGllcyIsInByb2R1Y3Rpdml0eSJdLCJzY3JlZW5zaG90cyI6W119">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMCIgZmlsbD0iI0ZGMjQ0MiIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMzQwIiBmb250LWZhbWlseT0iLWFwcGxlLXN5c3RlbSxQaW5nRmFuZyBTQyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuWwjzwvdGV4dD4KPC9zdmc+">
+
+<title>小红书合规检测</title>
+
+<style>
+/* Prevent flash of unstyled content */
+html { background: #FF2442; }
+body { opacity: 0; transition: opacity .2s; }
+body.ready { opacity: 1; }
+/* iOS safe area */
+body { padding-bottom: env(safe-area-inset-bottom, 0); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script type="text/babel" data-presets="react">
+const { useState, useRef, useEffect } = React;
+
+
+// ─── Design tokens ────────────────────────────────────────────────────────────
+const C = {
+  red:"#FF2442", redDark:"#D91A35", redLight:"#FF6B6B",
+  redBg:"#FFF0F2", redBg2:"#FFE4E8",
+  orange:"#FF6B35", yellow:"#FFB020",
+  green:"#00C48C", greenBg:"#E6FAF5",
+  purple:"#7C4DFF", purpleBg:"#EEE8FF",
+  blue:"#0093E9",
+  bg:"#F7F7F9", card:"#FFFFFF",
+  border:"#EFEFEF",
+  text1:"#111111", text2:"#555555", text3:"#999999", text4:"#CCCCCC",
+};
+
+// ─── Official Source Links ────────────────────────────────────────────────────
+const REF = {
+  adLaw:        "https://flk.npc.gov.cn/detail?id=ff8081817ab231eb017abd6bd860052d&title=%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E5%B9%BF%E5%91%8A%E6%B3%95",
+  foodLaw:      "https://flk.npc.gov.cn/detail?fileId=&id=ff8081817ab22e0c017abd8d85a205f1&title=%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E9%A3%9F%E5%93%81%E5%AE%89%E5%85%A8%E6%B3%95",
+  internetAd:   "https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/202306/t20230620_481045.html",
+  communityNorm:"https://agree.xiaohongshu.com/h5/terms/ZXXY20221213003/-1",
+  community:    "https://www.xiaohongshu.com/crown/community/agreement?fullscreen=true",
+  creator:      "https://creator.xiaohongshu.com",
+  zhihu2026:    "https://zhuanlan.zhihu.com/p/2033144820827436641",
+  zhihuNew:     "https://zhuanlan.zhihu.com/p/1973674057233883454",
+  zhihuRule:    "https://zhuanlan.zhihu.com/p/1889041221143466135",
+  ucsiwei:      "https://www.ucsiwei.com/news/xiaohongshu-2026-april-new-rules-8-red",
+  digitaling:   "https://www.digitaling.com/articles/958488.html",
+  pconline:     "https://www.pconline.com.cn/focus/2073/20736533.html",
+};
+
+// ─── Violation rules ──────────────────────────────────────────────────────────
+const VIOLATION_RULES = [
+  {
+    category:"绝对化用语", level:"高风险",
+    ref:"广告法第9条：禁止最高级、极限词", refUrl:REF.adLaw,
+    advice:[
+      {type:"rewrite",  text:"将「最好」「第一」「顶级」改为个人感受，如「我用了觉得挺好」「个人体验不错」"},
+      {type:"rewrite",  text:"将「唯一」「独家」改为「一款」「一个选择」等中性表达"},
+      {type:"platform", text:"2026年4月新规：平台对极限词标签级拦截，识别到直接判违规，不给修改机会"},
+    ],
+    words:["最佳","最好","最强","最低价","最有效","最安全","最专业","最权威","第一","全网第一","全国第一","销量第一","NO.1","TOP1","顶级","顶尖","遥遥领先","世界领先","极致","极品","极佳","终极","宇宙级","世界级","国际级","独一无二","绝无仅有","首选","首款","首屈一指","日销冠","性价比之王","无可替代","天花板","鼻祖","万能","完美","王牌","独家","仅此一次","永久有效","彻底解决"],
+  },
+  {
+    category:"医疗/功效夸大", level:"高风险",
+    ref:"广告法第18条：医疗广告禁止夸大疗效", refUrl:REF.adLaw,
+    advice:[
+      {type:"rewrite",    text:"将「治疗」「根治」改为「个人感觉有改善」，加入「效果因人而异」"},
+      {type:"rewrite",    text:"将「消炎」「杀菌」改为「清洁」「舒缓」（化妆品法规允许的功效词）"},
+      {type:"credential", text:"发布医疗功效内容须完成小红书医疗类专业号认证：创作者中心→资质认证"},
+    ],
+    words:["根治","根除","治愈","治疗","消炎","杀菌","抑菌","医治","处方","诊疗","临床","药效","药理","疗效","祛斑","溶脂","燃脂","减脂","消脂","修复受损","彻底消除","100%有效","特效","速效","强效","快速见效","1天见效","7天见效","无副作用","无依赖","注射","医美级","手术效果","抗癌","防癌","降血糖","降血压","降血脂"],
+  },
+  {
+    category:"法律/律师高危词", level:"极高风险",
+    ref:"律师法第29条 & 广告法第25条", refUrl:REF.adLaw,
+    advice:[
+      {type:"credential", text:"发布法律咨询须持律师执业证书及所执业许可证，并完成小红书专业号认证"},
+      {type:"rewrite",    text:"将「包赢」「100%胜诉」改为「依法提供专业法律意见」，不得承诺诉讼结果"},
+      {type:"platform",   text:"⚠️ 小红书对「律师」「打官司」等词高度敏感，普通账号极易被直接限流"},
+    ],
+    words:["包赢","保证胜诉","100%胜诉","包无罪","保证无罪","免费法律咨询","最强律师","顶级律所","帮你告他","帮你赢官司"],
+  },
+  {
+    category:"金融违规", level:"极高风险",
+    ref:"互联网广告管理办法（2023）", refUrl:REF.internetAd,
+    advice:[
+      {type:"credential", text:"金融理财内容须持基金销售资格或金融许可证，并完成小红书金融类账号认证"},
+      {type:"rewrite",    text:"删除「稳赚」「躺赚」「年化收益XX%」，改为「仅供参考，投资有风险」"},
+      {type:"platform",   text:"内容末尾须添加：「投资有风险，入市需谨慎，本内容不构成投资建议」"},
+    ],
+    words:["收益率","年化收益","投资回报","保底收益","稳赚","躺赚","无风险回报","高收益","暴富","快速变现","轻松月入","众筹","炒币","虚拟货币","NFT炒","保本","稳定收益"],
+  },
+  {
+    category:"站外引流", level:"极高风险",
+    ref:"小红书2025年交易导流规范升级", refUrl:REF.communityNorm,
+    advice:[
+      {type:"platform", text:"2025年升级：所有交易须通过小红书商城/直播间/官方留资组件，违规首次警告，情节严重直接封号"},
+      {type:"platform", text:"合规路径：开通小红书店铺挂商品链接；或通过聚光平台月消耗≥1000元解锁私信获客"},
+      {type:"rewrite",  text:"删除「加V」「WX」「私域」「加群」等引流暗语，引导用户点击笔记内商品卡片"},
+    ],
+    words:["加微信","加我微信","私信微信","微信号","WX号","加V","加薇","加威","VX","私我领取","扫码加入","天猫链接","京东链接","淘宝搜","私域","公众号","粉丝群","进群","加群","扫码联系"],
+  },
+  {
+    category:"诱导互动", level:"中风险",
+    ref:"小红书社区规范：禁止诱导行为", refUrl:REF.communityNorm,
+    advice:[
+      {type:"rewrite", text:"删除「点赞关注」「一键三连」，可改为自然结尾「希望对你有帮助」"},
+      {type:"rewrite", text:"删除「免费领取」「0元领」，如确有活动须通过品牌合作人系统报备"},
+    ],
+    words:["点赞关注","一键三连","求关注","帮我点赞","转发抽奖","评论抽奖","限时免费","免费领取","秒杀","抢爆","再不买就没了","限量赠送","0元领","白嫖","福利发放","私信领券","返利","返现"],
+  },
+  {
+    category:"虚假承诺", level:"高风险",
+    ref:"小红书社区公约2.0：禁止虚假宣传", refUrl:REF.community,
+    advice:[
+      {type:"rewrite", text:"将「包瘦」「包治」「一定有效」改为「我个人体验不错，但效果因人而异」"},
+      {type:"rewrite", text:"商业承诺移至商品详情页，笔记正文不得出现「无效退款」「100%成功」等"},
+    ],
+    words:["无效退款","保证有效","100%成功","零风险","一定有效","包瘦","包好","包治","必见效","保底","永久保障","终身有效","绝对安全"],
+  },
+  {
+    category:"封建迷信", level:"高风险",
+    ref:"小红书社区规范：禁止封建迷信内容", refUrl:REF.communityNorm,
+    advice:[
+      {type:"rewrite", text:"删除「招财进宝」「旺财」「改命」等玄学词，改为分享主观感受"},
+      {type:"rewrite", text:"将「运势」「风水」类内容改为普通生活分享"},
+    ],
+    words:["化解小人","招财进宝","旺财","旺人","算命","算八字","运势","风水","提升运气","护身符","增加事业运","助吉避凶","玄学开运","改命","转运"],
+  },
+  {
+    category:"刷量造假", level:"极高风险",
+    ref:"小红书2026新规：刷量封号", refUrl:REF.zhihu2026,
+    advice:[
+      {type:"platform", text:"刷粉/刷赞/买流量2026年升级技术识别，违者封号并追究反不正当竞争法责任"},
+      {type:"platform", text:"合规涨粉：通过聚光平台投放、坚持发布原创优质内容"},
+    ],
+    words:["刷粉","刷赞","买粉","买赞","刷量","代运营涨粉","保证涨粉","买流量","互刷"],
+  },
+  {
+    category:"刺激消费", level:"中风险",
+    ref:"小红书电商内容规范", refUrl:REF.zhihuRule,
+    advice:[
+      {type:"rewrite", text:"将「全网最低」「跳楼价」改为：当前活动价XX元，以商品详情页为准"},
+      {type:"rewrite", text:"将「再不买就没了」「错过涨价」改为如实说明库存/活动情况"},
+    ],
+    words:["全网最低","超低价","最后一件","马上涨价","亏本清仓","跳楼价","白菜价","疯抢","抢疯了","不买后悔","错过涨价","抢完下架"],
+  },
+];
+
+const WORD_MAP = {};
+VIOLATION_RULES.forEach(rule => rule.words.forEach(w => { WORD_MAP[w] = rule; }));
+
+const INDUSTRY_SENSITIVE = [
+  {keywords:["律师","法律","诉讼","维权","起诉","仲裁","法院","判决","打官司","法律咨询","合同纠纷","离婚","遗产"],warning:"检测到法律/律师行业词汇",detail:"小红书对「律师」「法律咨询」等词高度敏感，普通账号极易被限流。建议先完成专业号认证。",refUrl:REF.adLaw,icon:"⚖️"},
+  {keywords:["医生","医院","诊所","挂号","手术","化疗","放疗","癌症","肿瘤","糖尿病","高血压","心脏病"],warning:"检测到医疗机构/疾病词汇",detail:"发布医疗机构或疾病诊疗相关内容须完成小红书医疗类专业号认证。",refUrl:REF.adLaw,icon:"🏥"},
+  {keywords:["基金","股票","期货","外汇","理财产品","债券","信托","私募","公募","炒股","证券"],warning:"检测到金融投资行业词汇",detail:"发布金融理财内容须持有相应金融牌照并完成小红书金融类账号认证。",refUrl:REF.internetAd,icon:"💹"},
+  {keywords:["房产","楼盘","开发商","购房","二手房","中介","按揭","贷款利率"],warning:"检测到房产/中介行业词汇",detail:"房产推介须持有房地产经纪资质，发布具体楼盘/价格信息须有授权。",refUrl:REF.community,icon:"🏠"},
+];
+
+const INDUSTRIES = [
+  {id:"general",name:"通用规范",icon:"📋",color:"#7C4DFF",requirements:[
+    {id:"g1",level:"禁止",title:"禁用绝对化极限用语",desc:"依据广告法第9条，禁止使用极限词，如最、第一、顶级、唯一等。2026年4月新规升级为标签级拦截，系统识别到直接判违规。",ref:"广告法第9条（全国人大法律数据库）",refUrl:REF.adLaw},
+    {id:"g2",level:"禁止",title:"禁止虚构体验/伪造分享",desc:"笔记须为本人真实经历，不得用品牌方提供的图文冒充个人体验。2025年平台处置虚假分享笔记460万篇。",ref:"小红书社区公约（官方协议）",refUrl:REF.community},
+    {id:"g3",level:"必须",title:"商业合作须报备标注",desc:"与品牌合作须通过品牌合作人系统报备，并在笔记中标注「广告」或「合作」，未报备将被判定为隐性广告删除。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+    {id:"g4",level:"禁止",title:"禁止站外引流",desc:"2025年升级：所有交易须通过小红书官方组件完成，禁止留微信/QQ/手机号，违者首次警告，严重直接封号。",ref:"小红书社区规范（官方协议）",refUrl:REF.communityNorm},
+    {id:"g5",level:"必须",title:"AI生成内容须标注",desc:"2026年新规：使用AI工具生成的内容须标注「AI生成」，未标注将触发限流。",ref:"小红书2026最严新规解读",refUrl:REF.zhihuNew},
+    {id:"g6",level:"禁止",title:"禁止搬运抄袭",desc:"禁止从抖音/微博等平台搬运图文/视频，植入第三方水印将被删除并扣信誉分，累计5次永久封号。",ref:"小红书社区规范（官方协议）",refUrl:REF.communityNorm},
+  ]},
+  {id:"legal",name:"法律服务",icon:"⚖️",color:"#5C6BC0",requirements:[
+    {id:"l1",level:"必须",title:"须持律师执业证书",desc:"发布法律咨询/律师推介内容须持律师执业证书及所执业许可证，并完成小红书专业号认证，否则极易被直接限流。",ref:"广告法第25条",refUrl:REF.adLaw},
+    {id:"l2",level:"禁止",title:"禁止承诺诉讼结果",desc:"依据广告法第25条：不得以任何形式保证诉讼结果，「包赢」「100%胜诉」属违法行为，平台直接下架。",ref:"广告法第25条",refUrl:REF.adLaw},
+    {id:"l3",level:"必须",title:"行业词汇高度敏感",desc:"「律师」「法律咨询」「打官司」「起诉」等词高度敏感，即使内容合规，普通账号也可能被误判限流。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+    {id:"l4",level:"禁止",title:"禁止非律师冒充法律顾问",desc:"非律师资格人员不得以「法律顾问」自称提供有偿咨询，违反广告法第25条。",ref:"广告法第25条",refUrl:REF.adLaw},
+  ]},
+  {id:"food",name:"食品",icon:"🍜",color:"#FF5722",requirements:[
+    {id:"f1",level:"必须",title:"食品经营/生产许可证",desc:"食品销售须展示经营许可证编号；自产食品需展示SC编号；进口食品需附海关报关单及检验检疫证明。",ref:"食品安全法第84条",refUrl:REF.foodLaw},
+    {id:"f2",level:"必须",title:"保健品须展示蓝帽标识",desc:"须展示国食健字或卫食健字批准文号及蓝帽标识，不得声称治疗疾病/替代药物，否则视为违规医疗广告。",ref:"食品安全法第78条",refUrl:REF.foodLaw},
+    {id:"f3",level:"禁止",title:"禁止极端减肥效果宣传",desc:"不得使用「7天瘦10斤」「燃脂溶脂」等表述；须提醒效果因人而异，不得以对比图暗示产品直接效果。",ref:"广告法第9条 & 小红书2026年4月新规",refUrl:REF.ucsiwei},
+    {id:"f4",level:"禁止",title:"禁用医疗词汇",desc:"禁用消炎/降血糖/抗癌/调理肠胃等医疗词汇，须替换为个人感受描述。",ref:"广告法第18条",refUrl:REF.adLaw},
+  ]},
+  {id:"beauty",name:"美妆护肤",icon:"💄",color:"#E91E8C",requirements:[
+    {id:"b1",level:"必须",title:"特殊化妆品须提供注册证",desc:"防晒/美白/祛斑/防脱发等须提供国家药监局注册证（国妆特字）；进口特殊化妆品需境外备案凭证。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+    {id:"b2",level:"禁止",title:"禁用医疗效果词",desc:"普通护肤品不得使用治疗/消炎/医美级等；射频美容仪2026年4月起须持医疗器械注册证。",ref:"小红书2026年4月新规",refUrl:REF.ucsiwei},
+    {id:"b3",level:"必须",title:"对比图须明确标注",desc:"妆前妆后对比图须标注「上妆效果」，不得以对比图暗示产品改变肤质；不得P图夸大效果。",ref:"小红书违禁词大汇总（数英）",refUrl:REF.digitaling},
+    {id:"b4",level:"必须",title:"医美内容须资质认证",desc:"涉及注射/激光/医美手术等内容，须以认证医疗机构账号发布，普通账号发布将直接限流。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+  ]},
+  {id:"medical",name:"医疗健康",icon:"🏥",color:"#00897B",requirements:[
+    {id:"m1",level:"必须",title:"医疗机构须账号认证",desc:"发布医疗咨询/诊疗建议须完成小红书企业号认证，上传执业许可证，未认证账号将被直接限流。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+    {id:"m2",level:"必须",title:"医生身份须认证",desc:"以医生身份发布专业建议需完成职业认证并提交执业证书，认证后使用调理/改善等词须配合真实体验。",ref:"小红书2026最严新规解读",refUrl:REF.zhihuNew},
+    {id:"m3",level:"禁止",title:"禁止绝对化疗效表述",desc:"无论是否有资质，均不得使用根治/100%治愈/一定有效等表述。案例：博主写「红疹彻底解决了」，笔记被屏蔽扣12分。",ref:"小红书2026年4月新规",refUrl:REF.ucsiwei},
+    {id:"m4",level:"必须",title:"养生内容须配真实体验",desc:"穴位/调理/改善等词须搭配具体个人体验描述。2026年平台对此类词加强语义审查。",ref:"小红书2026最严新规解读",refUrl:REF.zhihuNew},
+  ]},
+  {id:"finance",name:"金融理财",icon:"💰",color:"#F57C00",requirements:[
+    {id:"fi1",level:"必须",title:"金融类内容须持牌认证",desc:"须持基金销售资格或银行业金融许可证，并完成小红书金融类账号认证，未认证禁止推荐具体金融产品。",ref:"互联网广告管理办法（司法部2023年）",refUrl:REF.internetAd},
+    {id:"fi2",level:"禁止",title:"禁止收益承诺",desc:"严禁承诺固定收益/保本保息，禁用稳赚/躺赚/年化收益XX%/无风险回报，违者内容下架并移交监管。",ref:"互联网广告管理办法（司法部2023年）",refUrl:REF.internetAd},
+    {id:"fi3",level:"必须",title:"必须添加风险提示",desc:"所有理财内容末尾须添加：「投资有风险，入市需谨慎，本内容不构成投资建议」。",ref:"小红书2025年新规速递",refUrl:REF.zhihuRule},
+    {id:"fi4",level:"禁止",title:"禁止虚拟货币/NFT炒作引流",desc:"禁止宣传NFT炒作，禁止为境外虚拟货币交易所引流，违者直接封号并上报网信办。",ref:"小红书2026最新违禁行为",refUrl:REF.zhihu2026},
+  ]},
+  {id:"education",name:"教育培训",icon:"📚",color:"#5E35B1",requirements:[
+    {id:"e1",level:"必须",title:"须展示办学许可证",desc:"K12学科类培训须提供办学许可证及双减备案证明；职业培训需展示职业技能等级培训机构资质证书。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+    {id:"e2",level:"禁止",title:"禁止制造教育焦虑",desc:"禁止「不报班就落后」「赢在起跑线」等焦虑营销话术，禁止虚构案例对比。2025年处置此类笔记460万篇。",ref:"小红书社区公约2.0",refUrl:REF.pconline},
+    {id:"e3",level:"必须",title:"师资须展示资质",desc:"K12辅导须展示教师资格证；外教须展示相应国家资质；职业培训讲师需展示职业资格证书。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+  ]},
+  {id:"travel",name:"旅游出行",icon:"✈️",color:"#0288D1",requirements:[
+    {id:"t1",level:"必须",title:"旅行社须持牌",desc:"招揽旅游团队须提供旅行社业务经营许可证及质量保证金缴存证明，无证经营将被投诉下架。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+    {id:"t2",level:"必须",title:"签证信息须注明有效期",desc:"签证/入境攻略须标注信息截止日期，禁止伪造签证成功率数据，涉及敏感国家须添加安全提示。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+    {id:"t3",level:"必须",title:"民宿须展示特种行业许可证",desc:"民宿/短租推广须展示特种行业许可证或住宿登记备案号，不得为无证经营的民宿引流。",ref:"小红书创作者服务平台",refUrl:REF.creator},
+  ]},
+  {id:"ecommerce",name:"电商带货",icon:"🛍️",color:"#D81B60",requirements:[
+    {id:"ec1",level:"必须",title:"射频美容仪须持医械证",desc:"2026年4月起，射频美容仪须取得医疗器械注册证（械字号）才能在小红书销售/推广。",ref:"小红书2026年4月新规",refUrl:REF.ucsiwei},
+    {id:"ec2",level:"禁止",title:"禁止虚假评价刷单",desc:"禁止刷量/买赞/伪造购买评价，平台升级技术识别刷量，违者封号并追究反不正当竞争法责任。",ref:"小红书2026最新违禁行为",refUrl:REF.zhihu2026},
+    {id:"ec3",level:"必须",title:"商品须明码标价",desc:"商品须明码标价，禁止大数据杀熟，禁止低价倾销扰乱市场，商家是合规第一责任人。",ref:"小红书2025年新规速递",refUrl:REF.zhihuRule},
+  ]},
+];
+
+// ─── Storage ──────────────────────────────────────────────────────────────────
+const KEYS = {USER:"xhs_user", RECORDS:"xhs_records", FAVORITES:"xhs_favorites"};
+function ls(k,fb){try{const v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch{return fb;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+
+// ─── Analysis engine ──────────────────────────────────────────────────────────
+function analyze(text) {
+  if (!text || text.trim().length < 2) return null;
+  const hits = [];
+  Object.entries(WORD_MAP).forEach(([word, rule]) => {
+    if (text.includes(word)) hits.push({word, ...rule});
+  });
+  const grouped = {};
+  hits.forEach(h => {
+    if (!grouped[h.category]) grouped[h.category] = {category:h.category, level:h.level, ref:h.ref, refUrl:h.refUrl, advice:h.advice, words:[]};
+    grouped[h.category].words.push(h.word);
+  });
+  const issues = Object.values(grouped);
+  const highRisk = hits.filter(h => h.level === "极高风险" || h.level === "高风险").length;
+  const score = Math.max(15, Math.min(96, 100 - highRisk * 18 - (hits.length - highRisk) * 7));
+  const industryWarnings = INDUSTRY_SENSITIVE.filter(ind => ind.keywords.some(kw => text.includes(kw)));
+  return {score, issues, hitCount:hits.length, industryWarnings};
+}
+
+function highlightText(text, issues) {
+  if (!issues || issues.length === 0) return [{t:"text",c:text}];
+  const allWords = issues.flatMap(i => i.words).sort((a,b) => b.length - a.length);
+  const parts = []; let rem = text;
+  for (let s = 0; rem.length > 0 && s < 2000; s++) {
+    let earliest = -1, found = null;
+    for (const w of allWords) {
+      const idx = rem.indexOf(w);
+      if (idx !== -1 && (earliest === -1 || idx < earliest)) {earliest=idx; found=w;}
+    }
+    if (!found) {parts.push({t:"text",c:rem}); break;}
+    if (earliest > 0) parts.push({t:"text",c:rem.slice(0,earliest)});
+    parts.push({t:"hit",c:found,meta:WORD_MAP[found]});
+    rem = rem.slice(earliest+found.length);
+  }
+  return parts;
+}
+
+const AIC = {credential:"#7C4DFF", platform:"#0093E9", qualify:"#FF6B35", rewrite:"#00C48C"};
+const AII = {rewrite:"✏️", qualify:"📝", credential:"📋", platform:"🔗"};
+const AIL = {rewrite:"修改建议", qualify:"表述规范", credential:"资质要求", platform:"平台规则"};
+
+// ─── UI Primitives ────────────────────────────────────────────────────────────
+function Card({style, children, onClick}) {
+  return (
+    <div onClick={onClick} style={{background:C.card,borderRadius:16,padding:16,boxShadow:"0 1px 12px rgba(0,0,0,0.05)",cursor:onClick?"pointer":"default",...style}}>
+      {children}
+    </div>
+  );
+}
+function Badge({level}) {
+  const map = {"极高风险":[C.red,"#fff"],"高风险":[C.orange,"#fff"],"中风险":[C.yellow,"#fff"],"低风险":[C.green,"#fff"]};
+  const [bg,fg] = map[level]||["#eee","#333"];
+  return <span style={{display:"inline-block",padding:"2px 8px",borderRadius:20,fontSize:10,fontWeight:700,background:bg,color:fg,letterSpacing:.3}}>{level}</span>;
+}
+function LevelBadge({level}) {
+  const ok = level==="必须";
+  return <span style={{display:"inline-block",padding:"2px 8px",borderRadius:6,fontSize:10,fontWeight:700,background:ok?"#E6FAF5":"#FFF0F2",color:ok?"#00896C":C.red,letterSpacing:.3}}>{level}</span>;
+}
+function Pill({children, style}) {
+  return <span style={{display:"inline-block",padding:"2px 10px",borderRadius:20,fontSize:11,fontWeight:700,...style}}>{children}</span>;
+}
+
+// ─── Auth Modal ───────────────────────────────────────────────────────────────
+// FIX: added phone validation in submit, added backdrop click to close
+function AuthModal({onClose, onLogin}) {
+  const [phone,setPhone] = useState("");
+  const [code,setCode]   = useState("");
+  const [cd,setCd]       = useState(0);
+  const [msg,setMsg]     = useState("");
+  const [ok,setOk]       = useState(false);
+  const timerRef         = useRef(null);
+
+  useEffect(() => () => { if(timerRef.current) clearInterval(timerRef.current); }, []);
+
+  function sendCode() {
+    if (!/^1[3-9]\d{9}$/.test(phone)) {setMsg("请输入正确的手机号");setOk(false);return;}
+    if (timerRef.current) clearInterval(timerRef.current);
+    setCd(60); setMsg("验证码已发送（演示：6688）"); setOk(true);
+    timerRef.current = setInterval(() => setCd(c => {if(c<=1){clearInterval(timerRef.current);return 0;}return c-1;}),1000);
+  }
+  function submit() {
+    if (!phone.trim()) {setMsg("请先输入手机号");setOk(false);return;}
+    if (code!=="6688") {setMsg("验证码错误，演示验证码为 6688");setOk(false);return;}
+    const users = ls("xhs_users",{});
+    users[phone] = users[phone] || {avatar:phone.slice(-4)};
+    lsSet("xhs_users",users);
+    onLogin({phone, avatar:users[phone].avatar});
+  }
+
+  return (
+    <div
+      style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.5)",display:"flex",alignItems:"flex-end",zIndex:999,backdropFilter:"blur(6px)",WebkitBackdropFilter:"blur(6px)"}}
+      onClick={e => { if(e.target === e.currentTarget) onClose(); }}
+    >
+      <div style={{width:"100%",maxWidth:480,margin:"0 auto",background:"#fff",borderRadius:"24px 24px 0 0",padding:"12px 24px 48px",boxSizing:"border-box"}}>
+        <div style={{width:36,height:4,borderRadius:2,background:C.border,margin:"0 auto 20px"}} />
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20}}>
+          <div>
+            <h2 style={{margin:"0 0 3px",fontSize:20,fontWeight:800,color:C.text1}}>登录 / 注册</h2>
+            <p style={{margin:0,fontSize:13,color:C.text3}}>演示验证码：6688，输入任意手机号即可</p>
+          </div>
+          <button onClick={onClose} style={{border:"none",background:C.bg,width:32,height:32,borderRadius:"50%",fontSize:16,cursor:"pointer",color:C.text3,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>✕</button>
+        </div>
+
+        {/* Phone */}
+        <div style={{display:"flex",alignItems:"center",border:`1.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",background:C.bg,marginBottom:10}}>
+          <span style={{padding:"0 14px",fontSize:15,color:C.text3,borderRight:`1px solid ${C.border}`,whiteSpace:"nowrap"}}>+86</span>
+          <input
+            value={phone} onChange={e=>setPhone(e.target.value)}
+            placeholder="请输入手机号" type="tel"
+            onKeyDown={e=>e.key==="Enter"&&sendCode()}
+            style={{flex:1,padding:"14px",border:"none",background:"transparent",fontSize:15,outline:"none",color:C.text1}}
+          />
+        </div>
+
+        {/* Code row */}
+        <div style={{display:"flex",gap:8,marginBottom:14}}>
+          <input
+            value={code} onChange={e=>setCode(e.target.value)}
+            placeholder="验证码" type="text" inputMode="numeric" maxLength={6}
+            onKeyDown={e=>e.key==="Enter"&&submit()}
+            style={{flex:1,padding:"14px",border:`1.5px solid ${C.border}`,borderRadius:12,fontSize:15,outline:"none",background:C.bg,color:C.text1}}
+          />
+          <button onClick={sendCode} disabled={cd>0}
+            style={{whiteSpace:"nowrap",padding:"0 16px",background:cd>0?"#f0f0f0":C.red,color:cd>0?"#aaa":"#fff",border:"none",borderRadius:12,fontSize:13,fontWeight:700,cursor:cd>0?"default":"pointer",minWidth:96}}>
+            {cd>0?`${cd}s`:"获取验证码"}
+          </button>
+        </div>
+
+        {msg && <p style={{color:ok?"#00896C":C.red,fontSize:13,margin:"0 0 12px",fontWeight:500}}>{msg}</p>}
+
+        <button onClick={submit} disabled={!code||!phone}
+          style={{width:"100%",padding:15,background:(!code||!phone)?"#f0f0f0":C.red,color:(!code||!phone)?"#bbb":"#fff",border:"none",borderRadius:14,fontSize:16,fontWeight:800,cursor:(!code||!phone)?"default":"pointer",transition:"all .2s"}}>
+          登录 / 注册
+        </button>
+        <p style={{textAlign:"center",marginTop:14,fontSize:11,color:C.text4}}>登录即代表同意用户协议与隐私政策</p>
+      </div>
+    </div>
+  );
+}
+
+// ─── Result Detail Modal ──────────────────────────────────────────────────────
+function ResultModal({record, onClose}) {
+  if (!record || !record.result) return null;
+  const {result, fullText} = record;
+  const parts = highlightText(fullText || "", result.issues || []);
+  const isClean = result.hitCount === 0 && (!result.industryWarnings || result.industryWarnings.length === 0);
+  const isDanger = result.hitCount > 0 && result.score < 60;
+  const scoreColor = result.score>=75?C.green:result.score>=50?C.yellow:C.red;
+
+  return (
+    <div
+      style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.5)",zIndex:998,display:"flex",flexDirection:"column",justifyContent:"flex-end",backdropFilter:"blur(6px)",WebkitBackdropFilter:"blur(6px)"}}
+      onClick={e=>{ if(e.target===e.currentTarget) onClose(); }}
+    >
+      <div style={{background:C.bg,borderRadius:"24px 24px 0 0",maxHeight:"92vh",display:"flex",flexDirection:"column",maxWidth:480,width:"100%",margin:"0 auto"}}>
+        <div style={{padding:"12px 20px 8px",flexShrink:0}}>
+          <div style={{width:36,height:4,borderRadius:2,background:C.border,margin:"0 auto 12px"}} />
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <div>
+              <p style={{margin:0,fontSize:15,fontWeight:800,color:C.text1}}>检测详情</p>
+              <p style={{margin:"2px 0 0",fontSize:11,color:C.text3}}>{record.time}</p>
+            </div>
+            <button onClick={onClose} style={{border:"none",background:"#f0f0f0",width:32,height:32,borderRadius:"50%",fontSize:15,cursor:"pointer",color:C.text2,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>
+          </div>
+        </div>
+        <div style={{overflowY:"auto",padding:"8px 16px 48px",WebkitOverflowScrolling:"touch"}}>
+          {/* Score summary */}
+          <Card style={{marginBottom:12,display:"flex",alignItems:"center",gap:14}}>
+            <div style={{width:52,height:52,borderRadius:14,background:scoreColor,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+              <span style={{fontSize:16,fontWeight:900,color:"#fff"}}>{result.score}</span>
+            </div>
+            <div>
+              <p style={{margin:"0 0 2px",fontSize:14,fontWeight:800,color:C.text1}}>
+                {isClean?"内容合规率较高，检测合规":isDanger?"高风险违规内容":"存在潜在违规风险"}
+              </p>
+              <p style={{margin:0,fontSize:12,color:C.text3}}>{isClean?"未检测到违禁词":`发现 ${result.hitCount} 处违规`}</p>
+            </div>
+          </Card>
+
+          {result.industryWarnings && result.industryWarnings.length > 0 && (
+            <Card style={{background:C.purpleBg,border:`1px solid #C9B8FF`,marginBottom:12}}>
+              <p style={{margin:"0 0 10px",fontSize:13,fontWeight:800,color:"#4527A0"}}>⚠️ 行业高敏感词提醒</p>
+              {result.industryWarnings.map((w,i) => (
+                <div key={i} style={{background:"rgba(255,255,255,0.6)",borderRadius:10,padding:"10px 12px",marginBottom:i<result.industryWarnings.length-1?8:0}}>
+                  <p style={{margin:"0 0 3px",fontSize:13,fontWeight:700,color:"#4527A0"}}>{w.icon} {w.warning}</p>
+                  <p style={{margin:"0 0 6px",fontSize:12,color:"#5E35B1",lineHeight:1.6}}>{w.detail}</p>
+                  <a href={w.refUrl} target="_blank" rel="noreferrer" style={{fontSize:11,color:C.purple,textDecoration:"none"}}>🔗 查看法规</a>
+                </div>
+              ))}
+            </Card>
+          )}
+
+          {result.hitCount > 0 && (
+            <>
+              <Card style={{background:isDanger?"#FFF0F2":"#FFFBF0",border:`1px solid ${isDanger?"#FFCCD4":"#FFE082"}`,marginBottom:12}}>
+                <p style={{margin:"0 0 12px",fontSize:13,fontWeight:800,color:isDanger?C.red:"#E65100"}}>{isDanger?"🚫":"⚠️"} 检测到 {result.hitCount} 处{isDanger?"高风险":"潜在"}违规</p>
+                {result.issues.map((issue,i) => (
+                  <div key={i} style={{background:"rgba(255,255,255,0.9)",borderRadius:10,padding:"10px 12px",marginBottom:i<result.issues.length-1?8:0}}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
+                      <span style={{fontSize:12,fontWeight:700,color:C.text1}}>{issue.category}</span>
+                      <Badge level={issue.level} />
+                    </div>
+                    <div style={{display:"flex",flexWrap:"wrap",gap:4,marginBottom:6}}>
+                      {issue.words.map(w=><Pill key={w} style={{background:isDanger?"#FFD7DC":"#FFF3E0",color:isDanger?C.red:"#BF360C"}}>{w}</Pill>)}
+                    </div>
+                    <a href={issue.refUrl} target="_blank" rel="noreferrer" style={{fontSize:11,color:C.red,textDecoration:"none"}}>🔗 {issue.ref}</a>
+                  </div>
+                ))}
+              </Card>
+              <Card style={{marginBottom:12}}>
+                <p style={{margin:"0 0 12px",fontSize:13,fontWeight:800,color:C.text1}}>💡 解决违规建议</p>
+                {result.issues.map((issue,i) => (
+                  <div key={i} style={{marginBottom:i<result.issues.length-1?14:0}}>
+                    <p style={{margin:"0 0 7px",fontSize:12,fontWeight:700,color:C.red}}>针对：{issue.category}</p>
+                    {issue.advice&&issue.advice.map((adv,j)=>(
+                      <div key={j} style={{display:"flex",gap:8,marginBottom:6,padding:"8px 10px",background:C.bg,borderRadius:8,borderLeft:`3px solid ${AIC[adv.type]}`}}>
+                        <span style={{fontSize:13,flexShrink:0}}>{AII[adv.type]}</span>
+                        <div>
+                          <span style={{fontSize:10,fontWeight:700,color:AIC[adv.type],display:"block",marginBottom:2}}>{AIL[adv.type]}</span>
+                          <span style={{fontSize:12,color:C.text2,lineHeight:1.6}}>{adv.text}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </Card>
+              {parts.length > 0 && (
+                <Card>
+                  <p style={{margin:"0 0 10px",fontSize:12,fontWeight:700,color:C.text3,letterSpacing:.4}}>原文标注预览</p>
+                  <div style={{fontSize:14,lineHeight:2,color:C.text1,wordBreak:"break-all"}}>
+                    {parts.map((p,i)=>p.t==="text"?<span key={i}>{p.c}</span>:
+                      <span key={i} style={{background:p.meta.level==="极高风险"?C.red:p.meta.level==="高风险"?C.orange:C.yellow,color:"#fff",borderRadius:4,padding:"1px 4px",fontWeight:700,fontSize:12,margin:"0 1px"}}>{p.c}</span>
+                    )}
+                  </div>
+                </Card>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Hero Header ──────────────────────────────────────────────────────────────
+function HeroHeader({title, subtitle, tag}) {
+  return (
+    <div style={{background:`linear-gradient(150deg,${C.redDark} 0%,${C.red} 55%,${C.redLight} 100%)`,padding:"32px 20px 26px",position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",top:-30,right:-30,width:110,height:110,borderRadius:"50%",background:"rgba(255,255,255,0.06)"}} />
+      <div style={{position:"absolute",bottom:-15,left:-15,width:70,height:70,borderRadius:"50%",background:"rgba(255,255,255,0.04)"}} />
+      {tag && <p style={{margin:"0 0 5px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:2.5}}>{tag}</p>}
+      <h1 style={{margin:"0 0 5px",fontSize:24,fontWeight:900,color:"#fff",letterSpacing:-0.5}}>{title}</h1>
+      <p style={{margin:0,fontSize:13,color:"rgba(255,255,255,0.72)"}}>{subtitle}</p>
+    </div>
+  );
+}
+
+// ─── Home Tab ─────────────────────────────────────────────────────────────────
+function HomeTab({user, onNeedLogin}) {
+  const [text, setText] = useState("");
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  function doAnalyze() {
+    if (!user) {onNeedLogin(); return;}
+    if (!text.trim()) return;
+    setLoading(true);
+    setTimeout(() => {
+      const r = analyze(text);
+      setResult(r);
+      if (r) {
+        const recs = ls(KEYS.RECORDS,[]);
+        recs.unshift({id:Date.now(), time:new Date().toLocaleString("zh-CN"), text:text.slice(0,80), score:r.score, hitCount:r.hitCount, result:r, fullText:text});
+        lsSet(KEYS.RECORDS, recs.slice(0,60));
+      }
+      setLoading(false);
+    }, 500);
+  }
+
+  const parts = result ? highlightText(text, result.issues) : [];
+  const isClean = result && result.hitCount===0 && result.industryWarnings.length===0;
+  const isDanger = result && result.hitCount>0 && result.score<60;
+  const scoreColor = !result?C.text4:result.score>=75?C.green:result.score>=50?C.yellow:C.red;
+
+  return (
+    <div style={{paddingBottom:24}}>
+      <HeroHeader tag="XIAOHONGSHU" title="合规检测" subtitle="基于 2025-2026 最新平台规范 · 本地运行 · 完全免费" />
+
+      <div style={{padding:"16px 16px 0"}}>
+        <Card style={{marginBottom:12}}>
+          <p style={{margin:"0 0 9px",fontSize:11,fontWeight:700,color:C.text3,letterSpacing:.8}}>粘贴笔记文案</p>
+          <textarea value={text} onChange={e=>{setText(e.target.value);setResult(null);}}
+            placeholder={"标题 + 正文 + 话题标签，全部粘贴进来…"}
+            style={{width:"100%",minHeight:130,border:`1.5px solid ${C.border}`,borderRadius:12,padding:"12px 14px",fontSize:15,lineHeight:1.8,outline:"none",resize:"none",boxSizing:"border-box",color:C.text1,background:C.bg,fontFamily:"inherit",transition:"border-color .2s"}}
+            onFocus={e=>e.target.style.borderColor=C.red}
+            onBlur={e=>e.target.style.borderColor=C.border}
+          />
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:8}}>
+            <span style={{fontSize:11,color:C.text4}}>{text.length} 字</span>
+            {text&&<button onClick={()=>{setText("");setResult(null);}} style={{border:"none",background:"none",color:C.text4,fontSize:12,cursor:"pointer",padding:0}}>清空</button>}
+          </div>
+        </Card>
+
+        <button onClick={doAnalyze} disabled={loading||!text.trim()}
+          style={{width:"100%",padding:16,background:(!text.trim())?"#f0f0f0":`linear-gradient(135deg,${C.redDark},${C.red})`,color:(!text.trim())?"#bbb":"#fff",border:"none",borderRadius:14,fontSize:16,fontWeight:800,cursor:(!text.trim())?"default":"pointer",letterSpacing:.5,marginBottom:16,boxShadow:text.trim()?"0 4px 18px rgba(255,36,66,0.3)":"none",transition:"all .2s"}}>
+          {loading?"检测中…":"立即检测"}
+        </button>
+
+        {result && (
+          <div>
+            {/* Score banner */}
+            <Card style={{marginBottom:12,background:isClean?"#E6FAF5":isDanger?C.redBg:"#FFFBF0",border:`1px solid ${isClean?"#A8EDD8":isDanger?"#FFCCD4":"#FFE082"}`}}>
+              <div style={{display:"flex",alignItems:"center",gap:14}}>
+                <div style={{width:56,height:56,borderRadius:15,background:scoreColor,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:`0 4px 14px ${isClean?"rgba(0,196,140,.3)":isDanger?"rgba(255,36,66,.3)":"rgba(255,176,32,.3)"}`}}>
+                  <span style={{fontSize:18,fontWeight:900,color:"#fff"}}>{result.score}</span>
+                </div>
+                <div style={{flex:1}}>
+                  <p style={{margin:"0 0 3px",fontSize:15,fontWeight:800,color:C.text1}}>
+                    {isClean?"内容合规率较高，检测合规":isDanger?"发现高风险违规内容":"存在潜在违规风险"}
+                  </p>
+                  <p style={{margin:0,fontSize:12,color:C.text3}}>
+                    {isClean?"未检测到违禁词，可放心发布":`发现 ${result.hitCount} 处违规，建议修改后发布`}
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Industry warnings */}
+            {result.industryWarnings.length>0 && (
+              <Card style={{background:C.purpleBg,border:`1px solid #C9B8FF`,marginBottom:12}}>
+                <p style={{margin:"0 0 10px",fontSize:13,fontWeight:800,color:"#4527A0"}}>⚠️ 行业高敏感词提醒</p>
+                {result.industryWarnings.map((w,i)=>(
+                  <div key={i} style={{background:"rgba(255,255,255,0.6)",borderRadius:10,padding:"10px 12px",marginBottom:i<result.industryWarnings.length-1?8:0}}>
+                    <p style={{margin:"0 0 3px",fontSize:13,fontWeight:700,color:"#4527A0"}}>{w.icon} {w.warning}</p>
+                    <p style={{margin:"0 0 6px",fontSize:12,color:"#5E35B1",lineHeight:1.6}}>{w.detail}</p>
+                    <a href={w.refUrl} target="_blank" rel="noreferrer" style={{fontSize:11,color:C.purple,textDecoration:"none"}}>🔗 查看相关法规</a>
+                  </div>
+                ))}
+              </Card>
+            )}
+
+            {result.hitCount>0 && (
+              <>
+                <Card style={{background:isDanger?"#FFF0F2":"#FFFBF0",border:`1px solid ${isDanger?"#FFCCD4":"#FFE082"}`,marginBottom:12}}>
+                  <p style={{margin:"0 0 12px",fontSize:13,fontWeight:800,color:isDanger?C.red:"#E65100"}}>{isDanger?"🚫":"⚠️"} 检测到 {result.hitCount} 处{isDanger?"高风险":"潜在"}违规</p>
+                  {result.issues.map((issue,i)=>(
+                    <div key={i} style={{background:"rgba(255,255,255,0.9)",borderRadius:10,padding:"10px 12px",marginBottom:i<result.issues.length-1?8:0}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
+                        <span style={{fontSize:12,fontWeight:700,color:C.text1}}>{issue.category}</span>
+                        <Badge level={issue.level} />
+                      </div>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:4,marginBottom:6}}>
+                        {issue.words.map(w=><Pill key={w} style={{background:isDanger?"#FFD7DC":"#FFF3E0",color:isDanger?C.red:"#BF360C"}}>{w}</Pill>)}
+                      </div>
+                      <a href={issue.refUrl} target="_blank" rel="noreferrer" style={{fontSize:11,color:C.red,textDecoration:"none"}}>🔗 {issue.ref}</a>
+                    </div>
+                  ))}
+                </Card>
+                <Card style={{marginBottom:12}}>
+                  <p style={{margin:"0 0 12px",fontSize:13,fontWeight:800,color:C.text1}}>💡 解决违规建议</p>
+                  {result.issues.map((issue,i)=>(
+                    <div key={i} style={{marginBottom:i<result.issues.length-1?14:0}}>
+                      <p style={{margin:"0 0 7px",fontSize:12,fontWeight:700,color:C.red}}>针对：{issue.category}</p>
+                      {issue.advice&&issue.advice.map((adv,j)=>(
+                        <div key={j} style={{display:"flex",gap:8,marginBottom:6,padding:"8px 10px",background:C.bg,borderRadius:8,borderLeft:`3px solid ${AIC[adv.type]}`}}>
+                          <span style={{fontSize:13,flexShrink:0}}>{AII[adv.type]}</span>
+                          <div>
+                            <span style={{fontSize:10,fontWeight:700,color:AIC[adv.type],display:"block",marginBottom:2}}>{AIL[adv.type]}</span>
+                            <span style={{fontSize:12,color:C.text2,lineHeight:1.6}}>{adv.text}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </Card>
+                {parts.length>0 && (
+                  <Card>
+                    <p style={{margin:"0 0 10px",fontSize:11,fontWeight:700,color:C.text3,letterSpacing:.6}}>原文标注预览</p>
+                    <div style={{fontSize:14,lineHeight:2,color:C.text1,wordBreak:"break-all"}}>
+                      {parts.map((p,i)=>p.t==="text"?<span key={i}>{p.c}</span>:
+                        <span key={i} style={{background:p.meta.level==="极高风险"?C.red:p.meta.level==="高风险"?C.orange:C.yellow,color:"#fff",borderRadius:4,padding:"0 4px",fontWeight:700,fontSize:12,margin:"0 1px"}}>{p.c}</span>
+                      )}
+                    </div>
+                  </Card>
+                )}
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── Industry Tab ─────────────────────────────────────────────────────────────
+function IndustryTab({user, onNeedLogin}) {
+  const [selected, setSelected] = useState(null);
+  const [favorites, setFavorites] = useState(() => ls(KEYS.FAVORITES,[]));
+  const [search, setSearch] = useState("");
+
+  function toggleFav(req) {
+    if (!user) {onNeedLogin(); return;}
+    const next = favorites.some(f=>f.id===req.id)?favorites.filter(f=>f.id!==req.id):[...favorites,req];
+    setFavorites(next); lsSet(KEYS.FAVORITES,next);
+  }
+  const isFav = id => favorites.some(f=>f.id===id);
+  const industry = selected ? INDUSTRIES.find(i=>i.id===selected) : null;
+  const filtered = INDUSTRIES.filter(ind => !search || ind.name.includes(search) || ind.requirements.some(r=>r.title.includes(search)||r.desc.includes(search)));
+
+  return (
+    <div style={{paddingBottom:24}}>
+      <HeroHeader tag="COMPLIANCE" title="行业合规" subtitle="各行业小红书发布规范 · 点击❤️收藏常用条款" />
+
+      <div style={{padding:"12px 16px 6px",position:"sticky",top:0,background:C.bg,zIndex:10}}>
+        <div style={{display:"flex",alignItems:"center",background:C.card,borderRadius:12,padding:"0 14px",border:`1px solid ${C.border}`,boxShadow:"0 1px 6px rgba(0,0,0,0.04)"}}>
+          <span style={{fontSize:14,color:C.text4,marginRight:8}}>🔍</span>
+          <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="搜索行业或关键词…"
+            style={{flex:1,padding:"12px 0",border:"none",background:"transparent",fontSize:14,outline:"none",color:C.text1}} />
+          {search&&<button onClick={()=>setSearch("")} style={{border:"none",background:"none",color:C.text4,cursor:"pointer",fontSize:14}}>✕</button>}
+        </div>
+      </div>
+
+      {!selected ? (
+        <div style={{padding:"8px 16px"}}>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+            {filtered.map(ind=>(
+              <button key={ind.id} onClick={()=>setSelected(ind.id)}
+                style={{border:"none",borderRadius:16,padding:"18px 14px 16px",cursor:"pointer",textAlign:"left",background:C.card,boxShadow:"0 1px 10px rgba(0,0,0,0.05)",position:"relative",overflow:"hidden"}}>
+                <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:ind.color,borderRadius:"16px 16px 0 0"}} />
+                <div style={{fontSize:26,marginBottom:8}}>{ind.icon}</div>
+                <div style={{fontWeight:800,fontSize:14,color:C.text1,marginBottom:3}}>{ind.name}</div>
+                <div style={{fontSize:11,color:C.text4}}>{ind.requirements.length} 条规范</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div style={{padding:"0 16px"}}>
+          <button onClick={()=>setSelected(null)}
+            style={{display:"flex",alignItems:"center",gap:6,border:"none",background:"none",color:C.red,fontSize:14,fontWeight:700,padding:"14px 0",cursor:"pointer"}}>
+            ← 返回列表
+          </button>
+          <Card style={{marginBottom:14,borderTop:`4px solid ${industry.color}`}}>
+            <div style={{display:"flex",alignItems:"center",gap:12}}>
+              <div style={{width:44,height:44,borderRadius:12,background:industry.color+"15",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22}}>{industry.icon}</div>
+              <div>
+                <h3 style={{margin:0,fontSize:16,fontWeight:800,color:C.text1}}>{industry.name}</h3>
+                <p style={{margin:"2px 0 0",fontSize:11,color:C.text3}}>{industry.requirements.length} 条合规规范 · 2025-2026</p>
+              </div>
+            </div>
+          </Card>
+          {industry.requirements.map(req=>(
+            <Card key={req.id} style={{marginBottom:10}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:8}}>
+                <div style={{display:"flex",alignItems:"center",gap:8,flex:1,minWidth:0}}>
+                  <LevelBadge level={req.level} />
+                  <span style={{fontSize:13,fontWeight:800,color:C.text1,lineHeight:1.4}}>{req.title}</span>
+                </div>
+                <button onClick={()=>toggleFav(req)}
+                  style={{border:"none",background:"none",fontSize:18,cursor:"pointer",color:isFav(req.id)?C.red:"#ddd",padding:"0 0 0 8px",flexShrink:0}}>
+                  {isFav(req.id)?"❤️":"🤍"}
+                </button>
+              </div>
+              <p style={{margin:"0 0 8px",fontSize:12,color:C.text2,lineHeight:1.7}}>{req.desc}</p>
+              {req.refUrl&&<a href={req.refUrl} target="_blank" rel="noreferrer" style={{fontSize:11,color:C.red,textDecoration:"none"}}>🔗 {req.ref}</a>}
+            </Card>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Profile Tab ──────────────────────────────────────────────────────────────
+// FIX: records and favorites now read fresh from localStorage on every render
+// via useEffect, so they update after login/new detection without re-mounting.
+function ProfileTab({user, onLogout, setShowAuth}) {
+  const [tab, setTab]               = useState("records");
+  const [records, setRecords]       = useState([]);
+  const [favorites, setFavorites]   = useState([]);
+  const [selectedRecord, setSelectedRecord] = useState(null);
+  const [favSelecting, setFavSelecting]     = useState(false);
+  const [favSelected, setFavSelected]       = useState([]);
+
+  // Always read fresh data when tab becomes visible or user changes
+  useEffect(() => {
+    setRecords(ls(KEYS.RECORDS,[]));
+    setFavorites(ls(KEYS.FAVORITES,[]));
+  }, [user]);
+
+  // Also refresh when the sub-tab switches (user may have added records)
+  useEffect(() => {
+    setRecords(ls(KEYS.RECORDS,[]));
+    setFavorites(ls(KEYS.FAVORITES,[]));
+  }, [tab]);
+
+  function toggleFavSelect(id) {
+    setFavSelected(prev=>prev.includes(id)?prev.filter(x=>x!==id):[...prev,id]);
+  }
+  function deleteSelectedFavs() {
+    const next = favorites.filter(f=>!favSelected.includes(f.id));
+    setFavorites(next); lsSet(KEYS.FAVORITES,next);
+    setFavSelected([]); setFavSelecting(false);
+  }
+  function selectAll() {
+    setFavSelected(favSelected.length===favorites.length?[]:favorites.map(f=>f.id));
+  }
+
+  const scoreColor = s => s>=75?C.green:s>=55?C.yellow:C.red;
+  const scoreBg    = s => s>=75?C.greenBg:s>=55?"#FFFDE7":C.redBg;
+
+  return (
+    <div style={{paddingBottom:24}}>
+      {selectedRecord && <ResultModal record={selectedRecord} onClose={()=>setSelectedRecord(null)} />}
+
+      {/* Header */}
+      <div style={{background:`linear-gradient(150deg,${C.redDark} 0%,${C.red} 100%)`,padding:"32px 20px 24px",position:"relative",overflow:"hidden"}}>
+        <div style={{position:"absolute",top:-40,right:-40,width:130,height:130,borderRadius:"50%",background:"rgba(255,255,255,0.06)"}} />
+        {user ? (
+          <>
+            <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:16}}>
+              <div style={{width:52,height:52,borderRadius:15,background:"rgba(255,255,255,0.18)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:17,fontWeight:900,color:"#fff",border:"2px solid rgba(255,255,255,0.28)",flexShrink:0}}>
+                {user.avatar}
+              </div>
+              <div style={{flex:1,minWidth:0}}>
+                <p style={{margin:0,fontSize:16,fontWeight:800,color:"#fff",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{user.phone}</p>
+                <p style={{margin:"3px 0 0",fontSize:12,color:"rgba(255,255,255,0.65)"}}>已登录</p>
+              </div>
+              <button onClick={onLogout}
+                style={{border:"1.5px solid rgba(255,255,255,0.35)",background:"rgba(255,255,255,0.1)",color:"#fff",padding:"7px 14px",borderRadius:20,fontSize:12,cursor:"pointer",flexShrink:0}}>
+                退出
+              </button>
+            </div>
+            <div style={{display:"flex",gap:8}}>
+              {[["📋","检测记录",records.length],["❤️","我的收藏",favorites.length]].map(([icon,label,count])=>(
+                <div key={label} style={{flex:1,background:"rgba(255,255,255,0.13)",borderRadius:12,padding:"10px 12px"}}>
+                  <p style={{margin:"0 0 2px",fontSize:11,color:"rgba(255,255,255,0.65)"}}>{icon} {label}</p>
+                  <p style={{margin:0,fontSize:20,fontWeight:900,color:"#fff"}}>{count}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div style={{display:"flex",alignItems:"center",gap:14}}>
+            <div style={{width:52,height:52,borderRadius:15,background:"rgba(255,255,255,0.14)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,border:"2px solid rgba(255,255,255,0.2)",flexShrink:0}}>
+              👤
+            </div>
+            <div style={{flex:1}}>
+              <p style={{margin:0,fontSize:18,fontWeight:800,color:"#fff"}}>未登录</p>
+              <p style={{margin:"3px 0 0",fontSize:12,color:"rgba(255,255,255,0.65)"}}>登录后查看检测记录与收藏</p>
+            </div>
+            <button onClick={()=>setShowAuth(true)}
+              style={{background:"#fff",color:C.red,border:"none",padding:"10px 20px",borderRadius:20,fontSize:13,fontWeight:800,cursor:"pointer",flexShrink:0,boxShadow:"0 2px 8px rgba(0,0,0,0.12)"}}>
+              立即登录
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Sub-tabs */}
+      <div style={{display:"flex",background:C.card,borderBottom:`1px solid ${C.border}`}}>
+        {[["records","检测记录"],["favorites","我的收藏"]].map(([t,l])=>(
+          <button key={t} onClick={()=>setTab(t)}
+            style={{flex:1,border:"none",background:"none",padding:"13px 0",fontSize:13,fontWeight:tab===t?800:400,color:tab===t?C.red:C.text3,borderBottom:`2.5px solid ${tab===t?C.red:"transparent"}`,cursor:"pointer",transition:"color .15s"}}>
+            {l}
+          </button>
+        ))}
+      </div>
+
+      <div style={{padding:"12px 16px"}}>
+        {tab==="records" ? (
+          records.length===0
+            ? <EmptyState icon="📋" text={user?"暂无检测记录，去检测一下吧":"登录后查看检测历史"} />
+            : records.map(r=>(
+              <div key={r.id} onClick={()=>setSelectedRecord(r)}
+                style={{background:C.card,borderRadius:14,padding:"13px 16px",marginBottom:9,boxShadow:"0 1px 8px rgba(0,0,0,0.04)",display:"flex",alignItems:"center",gap:12,cursor:"pointer",transition:"box-shadow .15s"}}
+                onMouseEnter={e=>e.currentTarget.style.boxShadow="0 3px 14px rgba(0,0,0,0.09)"}
+                onMouseLeave={e=>e.currentTarget.style.boxShadow="0 1px 8px rgba(0,0,0,0.04)"}
+              >
+                <div style={{width:44,height:44,borderRadius:12,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center",background:scoreBg(r.score)}}>
+                  <span style={{fontSize:14,fontWeight:900,color:scoreColor(r.score)}}>{r.score}</span>
+                </div>
+                <div style={{flex:1,minWidth:0}}>
+                  <p style={{margin:0,fontSize:13,fontWeight:600,color:C.text1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.text}</p>
+                  <p style={{margin:"3px 0 0",fontSize:11,color:C.text3}}>{r.time} · {r.hitCount>0?`${r.hitCount}处风险`:"合规"}</p>
+                </div>
+                <div style={{display:"flex",alignItems:"center",gap:4,flexShrink:0}}>
+                  <div style={{width:6,height:6,borderRadius:"50%",background:scoreColor(r.score)}} />
+                  <span style={{fontSize:16,color:C.text4}}>›</span>
+                </div>
+              </div>
+            ))
+        ) : (
+          <>
+            {favorites.length>0 && (
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+                {favSelecting ? (
+                  <>
+                    <button onClick={selectAll} style={{border:"none",background:"none",color:C.red,fontSize:13,fontWeight:700,cursor:"pointer"}}>
+                      {favSelected.length===favorites.length?"取消全选":"全选"}
+                    </button>
+                    <div style={{display:"flex",gap:8}}>
+                      <button onClick={deleteSelectedFavs} disabled={favSelected.length===0}
+                        style={{padding:"6px 16px",background:favSelected.length===0?"#f0f0f0":C.red,color:favSelected.length===0?"#aaa":"#fff",border:"none",borderRadius:20,fontSize:12,fontWeight:700,cursor:favSelected.length===0?"default":"pointer"}}>
+                        删除({favSelected.length})
+                      </button>
+                      <button onClick={()=>{setFavSelecting(false);setFavSelected([]);}}
+                        style={{padding:"6px 14px",background:"#f0f0f0",color:C.text2,border:"none",borderRadius:20,fontSize:12,cursor:"pointer"}}>
+                        取消
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <span style={{fontSize:12,color:C.text3}}>共 {favorites.length} 条</span>
+                    <button onClick={()=>setFavSelecting(true)} style={{border:"none",background:"none",color:C.red,fontSize:13,fontWeight:700,cursor:"pointer"}}>批量删除</button>
+                  </>
+                )}
+              </div>
+            )}
+            {favorites.length===0
+              ? <EmptyState icon="❤️" text="暂无收藏，去行业页面收藏规范" />
+              : favorites.map(f=>(
+                <div key={f.id} onClick={()=>favSelecting&&toggleFavSelect(f.id)}
+                  style={{background:C.card,borderRadius:14,padding:"13px 16px",marginBottom:9,boxShadow:"0 1px 8px rgba(0,0,0,0.04)",cursor:favSelecting?"pointer":"default",outline:favSelecting&&favSelected.includes(f.id)?`2px solid ${C.red}`:"2px solid transparent"}}>
+                  <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+                    {favSelecting&&(
+                      <div style={{width:18,height:18,borderRadius:"50%",border:`2px solid ${favSelected.includes(f.id)?C.red:"#ddd"}`,background:favSelected.includes(f.id)?C.red:"#fff",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                        {favSelected.includes(f.id)&&<span style={{color:"#fff",fontSize:10,fontWeight:900}}>✓</span>}
+                      </div>
+                    )}
+                    <LevelBadge level={f.level} />
+                    <span style={{fontSize:13,fontWeight:800,color:C.text1,flex:1,minWidth:0}}>{f.title}</span>
+                  </div>
+                  <p style={{margin:"0 0 8px",fontSize:12,color:C.text2,lineHeight:1.7}}>{f.desc}</p>
+                  {f.refUrl&&<a href={f.refUrl} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{fontSize:11,color:C.red,textDecoration:"none"}}>🔗 {f.ref}</a>}
+                </div>
+              ))
+            }
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function EmptyState({icon, text}) {
+  return (
+    <div style={{textAlign:"center",padding:"56px 20px",color:C.text4}}>
+      <div style={{fontSize:46,marginBottom:12,opacity:.5}}>{icon}</div>
+      <p style={{margin:0,fontSize:14,color:C.text3}}>{text}</p>
+    </div>
+  );
+}
+
+// ─── App Root ─────────────────────────────────────────────────────────────────
+function App() {
+  const [tab, setTab]           = useState("home");
+  const [user, setUser]         = useState(() => ls(KEYS.USER,null));
+  const [showAuth, setShowAuth] = useState(false);
+
+  function handleLogin(u)  { setUser(u); lsSet(KEYS.USER,u); setShowAuth(false); }
+  function handleLogout()  { setUser(null); localStorage.removeItem(KEYS.USER); }
+
+  const tabs = [
+    {id:"home",     label:"检测", icon:"◈"},
+    {id:"industry", label:"行业", icon:"✦"},
+    {id:"profile",  label:"我的", icon:"◎"},
+  ];
+
+  return (
+    <>
+      <style>{`
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{height:100%;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+        body{min-height:100%;background:${C.bg};-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:${C.text1};font-family:-apple-system,'PingFang SC','Helvetica Neue',Arial,sans-serif}
+        ::-webkit-scrollbar{display:none}
+        input,textarea,button,select{font-family:inherit}
+        button{-webkit-tap-highlight-color:transparent}
+        a{-webkit-tap-highlight-color:transparent}
+      `}</style>
+
+      <div style={{display:"flex",flexDirection:"column",minHeight:"100vh",maxWidth:480,margin:"0 auto",background:C.bg}}>
+        <div style={{flex:1,paddingBottom:68}}>
+          {tab==="home"     && <HomeTab     user={user} onNeedLogin={()=>setShowAuth(true)} />}
+          {tab==="industry" && <IndustryTab user={user} onNeedLogin={()=>setShowAuth(true)} />}
+          {tab==="profile"  && <ProfileTab  user={user} onLogout={handleLogout} setShowAuth={setShowAuth} />}
+        </div>
+
+        {/* Bottom nav */}
+        <div style={{position:"sticky",bottom:0,background:"rgba(255,255,255,0.94)",borderTop:`1px solid ${C.border}`,display:"flex",zIndex:100,backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)"}}>
+          {tabs.map(t=>{
+            const active = tab===t.id;
+            return (
+              <button key={t.id} onClick={()=>setTab(t.id)}
+                style={{flex:1,border:"none",background:"none",padding:"9px 0 11px",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3,position:"relative",WebkitTapHighlightColor:"transparent"}}>
+                <span style={{fontSize:active?21:19,lineHeight:1,color:active?C.red:C.text4,transition:"all .18s",fontWeight:active?900:400}}>{t.icon}</span>
+                <span style={{fontSize:10,fontWeight:active?800:400,color:active?C.red:C.text4,letterSpacing:.3,transition:"color .18s"}}>{t.label}</span>
+                {active&&<div style={{position:"absolute",bottom:0,left:"50%",transform:"translateX(-50%)",width:18,height:2,borderRadius:1,background:C.red}} />}
+              </button>
+            );
+          })}
+        </div>
+
+        {showAuth&&<AuthModal onClose={()=>setShowAuth(false)} onLogin={handleLogin} />}
+      </div>
+    </>
+  );
+}
+
+
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+</script>
+
+<script>
+// ─── Register Service Worker (enables offline use) ────────────────────────
+if ('serviceWorker' in navigator) {
+  const swBlob = new Blob(["\nconst CACHE = 'xhs-compliance-v2';\nconst PRECACHE = [\n  'https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js',\n  'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js',\n  'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js'\n];\n\nself.addEventListener('install', e => {\n  e.waitUntil(\n    caches.open(CACHE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting())\n  );\n});\n\nself.addEventListener('activate', e => {\n  e.waitUntil(\n    caches.keys().then(keys =>\n      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))\n    ).then(() => self.clients.claim())\n  );\n});\n\nself.addEventListener('fetch', e => {\n  // Cache-first for CDN scripts, network-first for everything else\n  const url = e.request.url;\n  const isCDN = url.includes('cdnjs.cloudflare.com');\n  if (isCDN) {\n    e.respondWith(\n      caches.match(e.request).then(cached => cached || fetch(e.request).then(res => {\n        const clone = res.clone();\n        caches.open(CACHE).then(c => c.put(e.request, clone));\n        return res;\n      }))\n    );\n  }\n});\n"], {type: 'application/javascript'});
+  const swUrl  = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swUrl, {scope: './'}
+  ).then(reg => {
+    console.log('[PWA] SW registered, scope:', reg.scope);
+  }).catch(e => {
+    console.warn('[PWA] SW registration failed:', e);
+  });
+}
+
+// ─── Fade in after React renders ─────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => document.body.classList.add('ready'), 100);
+});
+
+// ─── iOS "Add to Home Screen" prompt helper ───────────────────────────────
+(function() {
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone === true;
+  const dismissed = localStorage.getItem('pwa_prompt_dismissed');
+  if (!isIOS || isStandalone || dismissed) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'pwa-banner';
+  banner.innerHTML = `
+    <div style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;padding:14px 16px 32px;z-index:9999;display:flex;align-items:center;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,0.12);font-family:-apple-system,sans-serif;">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMCIgZmlsbD0iI0ZGMjQ0MiIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMzQwIiBmb250LWZhbWlseT0iLWFwcGxlLXN5c3RlbSxQaW5nRmFuZyBTQyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4MCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuWwjzwvdGV4dD4KPC9zdmc+" style="width:44px;height:44px;border-radius:10px;flex-shrink:0;">
+      <div style="flex:1;min-width:0;">
+        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#111;">安装到主屏幕</p>
+        <p style="margin:0;font-size:12px;color:#888;line-height:1.4;">点击底部 <b>分享</b> 按钮，选择「<b>添加到主屏幕</b>」即可像 App 一样使用</p>
+      </div>
+      <button id="pwa-close" style="border:none;background:#f5f5f5;color:#555;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;flex-shrink:0;">知道了</button>
+    </div>`;
+  document.body.appendChild(banner);
+  document.getElementById('pwa-close').onclick = () => {
+    banner.remove();
+    localStorage.setItem('pwa_prompt_dismissed', '1');
+  };
+})();
+</script>
+</body>
+</html>
